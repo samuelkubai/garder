@@ -1,0 +1,41 @@
+version: '2.2'
+volumes:
+  eagle_data:
+    external: true
+
+services:
+  app:
+    build:
+      context: ../../../
+      dockerfile: docker/dev/api/Dockerfile
+    links:
+      - database
+    volumes:
+      - ../../../api/app:/go/src/app
+    ports:
+      - '8080:8080'
+    env_file:
+      - ../../../api/.env
+    environment:
+      PORT: 8080
+      DATABASE_URL: postgres://eagle:eagle@database/eagle
+    depends_on:
+      database:
+        condition: service_healthy
+  database:
+    image: postgres
+    expose:
+      - '5432'
+    ports:
+      - '5432:5432'
+    volumes:
+      - eagle_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: eagle
+      POSTGRES_PASSWORD: eagle
+      POSTGRES_DATABASE: eagle
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 5s
+      timeout: 10s
+      retries: 5

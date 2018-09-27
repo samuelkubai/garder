@@ -1,0 +1,62 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 5vh;
+    min-height: 67px;
+
+    padding: 0 25px 0 0;
+
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+
+
+.brand-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+    &__icon {
+        margin: 0 15px 0 25px;
+        cursor: pointer;
+    }
+
+    &__title {
+        font-size: 18px;
+        font-weight: bold; 
+    } 
+}
+
+.left-actions {
+    &__container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        list-style:none;    
+    }
+
+    &__icon {
+        padding: 0 10px 0 5px;
+        cursor: pointer;
+    }
+}
+
+// Special elements
+.notification-toggle {
+    position: relative;
+
+    &__badge {
+        position: absolute;
+        top: -6px;
+        right: 3px;
+       
+        font-size: 9px;
+
+        border-radius: 50%;
+        padding: 3px 6px;
+        background: #318DF9;
+        color: #fff;
+    }
+}
